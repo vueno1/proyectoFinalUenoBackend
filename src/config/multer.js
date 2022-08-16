@@ -1,16 +1,13 @@
 const multer = require("multer")
 
-const filesStorageEngine = multer.diskStorage({
-
-    destination:(req, file, cb) =>{
-        cb(null, "../../public")
+const storage = multer.diskStorage({
+    destination: function(req,res,cb) {
+        cb(null, "../uploads")
     },
-    
-    filename: (req, file, cb) =>{
+    filename: function(req,file,cb) {
         cb(null, file.originalname)
     }
 })
 
-const upload = multer({storage:filesStorageEngine})
-
-module.exports = upload
+const multerMidelware = multer({storage: storage})
+module.exports = multerMidelware

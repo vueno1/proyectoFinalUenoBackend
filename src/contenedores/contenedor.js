@@ -49,7 +49,8 @@ module.exports = class ContenedorMongodb {
             this.collection.deleteOne({_id : id}, function(err){
                 if(err) return handleError(err)
             })
-            return this.collection.find()
+            const mostrarTodos = await this.collection.find()
+            return mostrarTodos
         }
         catch(error) {
             console.log(error.message)

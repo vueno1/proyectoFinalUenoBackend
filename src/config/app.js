@@ -1,6 +1,6 @@
 const express = require ('express');
 const app = express()
-const productos = require("../rutas/productos.js") 
+const productosRoutes = require("../rutas/productos.route") 
 const carrito = require("../rutas/carrito") 
 const usuario = require("../rutas/user")
 const path = require("path")
@@ -16,6 +16,9 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }))
+
+app.use(express.static("public"))
+app.use("/uploads", express.static("uploads"))
 
 app.use(cookieParser())
 app.use(session({
@@ -39,7 +42,7 @@ app.engine('.hbs', exphbs.engine({
 }));
 app.set('view engine', '.hbs');
 
-app.use('/api/productos', productos);
+app.use('/api/productos', productosRoutes);
 app.use('/api/carrito', carrito);
 app.use("/", usuario)
 

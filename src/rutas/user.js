@@ -8,7 +8,7 @@ const { miCarrito, misProductos } = require("../daos/index")
 const twilioClient = require("../config/twilio")
 require("dotenv").config() 
 const transporter = require("../config/nodemailer")
-const upload = require("../config/multer")
+const multerMidelware = require("../config/multer")
 
 const log4js = require("../config/log")
 const logger = log4js.getLogger()
@@ -48,7 +48,7 @@ router.get("/register",  (req, res) => {
     }
 })
 
-router.post("/register" , upload.single("avatar"), async (req,res) =>{
+router.post("/register" , multerMidelware.single("avatar"), async (req,res) =>{
     try{        
         const usuariosRegistrados = await Usuario.find()
         const { email,
@@ -77,7 +77,7 @@ router.post("/register" , upload.single("avatar"), async (req,res) =>{
             avatar: avatar
         })        
         await user.save()
-
+        console.log(req.file)
         const mailUsuarioNuevo = {
             from: "servidor",
             to: process.env.MAIL_ADMIN,
