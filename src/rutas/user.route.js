@@ -8,7 +8,10 @@ const { miCarrito, misProductos } = require("../daos/index")
 const twilioClient = require("../config/twilio")
 require("dotenv").config() 
 const transporter = require("../config/nodemailer")
-const multerMidelware = require("../config/multer")
+
+const {
+    mostrarCarrito
+} = require("../services/carrito/carrito.service")
 
 const log4js = require("../config/log")
 const logger = log4js.getLogger()
@@ -48,7 +51,7 @@ router.get("/register",  (req, res) => {
     }
 })
 
-router.post("/register" , multerMidelware.single("avatar"), async (req,res) =>{
+router.post("/register", async (req,res) =>{
     try{        
         const usuariosRegistrados = await Usuario.find()
         const { email,
@@ -70,11 +73,11 @@ router.post("/register" , multerMidelware.single("avatar"), async (req,res) =>{
             const user = new Usuario({
                 email: email, 
                 password: hash,
-            name: name,
-            address: address,
-            age: age, 
-            phone: phone,
-            avatar: avatar
+                name: name,
+                address: address,
+                age: age, 
+                phone: phone,
+                avatar: avatar
         })        
         await user.save()
         console.log(req.file)

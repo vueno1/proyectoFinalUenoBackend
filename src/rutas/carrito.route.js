@@ -2,27 +2,17 @@ const { miCarrito } = require("../daos/index")
 const { Router } = require('express');
 const router = Router();
 
+const {
+    mostrarCarrito,
+    guardarProductoEnCarrito
+} = require("../controllers/carrito/carrito.controller")
+
 const log4js = require("../config/log")
 const logger = log4js.getLogger("archivo")
 
-router.post("/:id", async (req,res)=>{
-    try {
-        const idProducto = req.params.id
-        const hayCarrito = await miCarrito.mostrarTodo()
-        if(hayCarrito.length <= 0) {
-            const idCarrito = await miCarrito.crearCarrito()
-            await miCarrito.guardarEnCarrito(idCarrito, idProducto)
+router.get("/", mostrarCarrito)
 
-        } else {
-           const carrito = await miCarrito.mostrarCarrito()
-            await miCarrito.guardarEnCarrito(carrito._id, idProducto)
-        }
-        res.redirect("/index")
-    }
-    catch (error) {
-        logger.error(e)
-    }
-})
+router.post("/:id", guardarProductoEnCarrito)
 
 router.delete("/:id", async (req,res) =>{
     try{

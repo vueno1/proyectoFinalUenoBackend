@@ -1,8 +1,8 @@
 const express = require ('express');
 const app = express()
 const productosRoutes = require("../rutas/productos.route") 
-const carrito = require("../rutas/carrito") 
-const usuario = require("../rutas/user")
+const carritoRoute = require("../rutas/carrito.route") 
+const usuarioRoute = require("../rutas/user.route")
 const path = require("path")
 const exphbs = require("express-handlebars")
 const passport = require("../config/passport")
@@ -43,7 +43,7 @@ app.engine('.hbs', exphbs.engine({
 app.set('view engine', '.hbs');
 
 app.use('/api/productos', productosRoutes);
-app.use('/api/carrito', carrito);
-app.use("/", usuario)
+app.use('/api/carrito', carritoRoute);
+app.use("/", usuarioRoute)
 
 module.exports = app; 
