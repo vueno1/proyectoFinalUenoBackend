@@ -13,9 +13,18 @@
     {{#each carrito}}
         <tr>
             <th scope="row">{{this.id}}</th>
-            {{#each this.productos}}
-              <td><img width="50" src="{{this.foto}}"  alt="not found"></td>              
-            {{/each}}
+              {{#each productos}}
+                <td>
+                  <th>
+                    <ul>
+                      <li>{{this.nombre}}</li>
+                      <li>{{this.precio}}</li>
+                      <li><img width="50" src="{{this.foto}}"  alt="not found"></li>
+                      <li><button class="btn btn-primary" onclick="location.href=`/api/carrito/deleteProducto/{{this._id}}`">eliminar</button></li>
+                    </ul>
+                  </th>
+                </td>
+              {{/each}}
         </tr>
     {{/each}}
   </tbody>

@@ -11,6 +11,6 @@ const {
 router.get("/", mostrarCarrito)
 router.post("/:id", guardarProductoEnCarrito)
 router.delete("/:id", borrarCarrito)
-router.delete("/:id/productos/:id_prod", borrarProducto)
+router.get("/deleteProducto/:id", borrarProducto)
 
 module.exports = router

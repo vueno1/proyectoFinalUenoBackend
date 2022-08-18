@@ -53,10 +53,10 @@ async function borrarCarrito(req,res) {
 
 async function borrarProducto (req,res){
     try{
-        const idProducto = req.params.id_prod
-        const idCarrito = req.params.id
-        const carritoActualizado = await deleteProductoxCarrito(idProducto, idCarrito)
-        res.send(carritoActualizado)   
+        const idProducto = req.params.id
+        const carrito = await getCarrito()
+        await deleteProductoxCarrito(idProducto, carrito._id)
+        res.redirect("/index")  
     }
     catch (e) {
         logger.error(e.message)
