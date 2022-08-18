@@ -6,15 +6,19 @@ const {
     guardarEnCarrito,
     carritoNuevoId,   
     getCarritoArray, 
-    deleteCarritoById,
-    deleteProductoInCarritoById
+    deleteCarritoPorId,
+    deleteProductoxCarrito
 
 } = require("../../services/carrito/carrito.service")
 
 async function mostrarCarrito(req,res){
-    res.send({
-        miCarrito: await getCarritoArray()
-    })
+    try{
+        res.send({
+            miCarrito: await getCarritoArray()
+        })
+    } catch(e) {
+        logger.error(e.message);
+    }
 }
 
 async function guardarProductoEnCarrito(req,res) {
@@ -31,12 +35,37 @@ async function guardarProductoEnCarrito(req,res) {
         }
         res.redirect("/index")  
     }
-    catch (error) {
-        logger.error(error)
+    catch (e) {
+        logger.error(e.message)
+    }
+}
+
+async function borrarCarrito(req,res) {
+    try{
+        const idCarrito = req.params.id
+        await deleteCarritoPorId(idCarrito)
+        res.send(`carrito eliminado`)
+
+    } catch(e) {
+        logger.error(e.message)
+    }
+}
+
+async function borrarProducto (req,res){
+    try{
+        const idProducto = req.params.id_prod
+        const idCarrito = req.params.id
+        const carritoActualizado = await deleteProductoxCarrito(idProducto, idCarrito)
+        res.send(carritoActualizado)   
+    }
+    catch (e) {
+        logger.error(e.message)
     }
 }
 
 module.exports = {
     guardarProductoEnCarrito,
-    mostrarCarrito
+    mostrarCarrito,
+    borrarCarrito,
+    borrarProducto
 }

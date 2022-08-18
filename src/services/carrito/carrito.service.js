@@ -17,9 +17,20 @@ async function guardarEnCarrito(idCarrito,idProducto) {
     return guardado
 }
 
+async function deleteCarritoPorId(idCarrito){
+    return await miCarrito.borrarCarritoPorId(idCarrito)
+} 
+
+async function deleteProductoxCarrito(idProducto, idCarrito){
+    const carrito = await miCarrito.borrarProductoDeCarrito(idProducto,idCarrito)
+    return carrito
+}
+
 module.exports = {
     getCarrito,
     carritoNuevoId,
     guardarEnCarrito,
-    getCarritoArray
+    getCarritoArray,
+    deleteCarritoPorId,
+    deleteProductoxCarrito
 }
