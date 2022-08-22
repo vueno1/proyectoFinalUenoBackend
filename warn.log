@@ -80,3 +80,4 @@
 [2022-08-17T17:47:41.341] [ERROR] archivo - TypeError: Cannot read properties of null (reading 'length')
     at guardarProductoEnCarrito (C:\Users\Usuario\Documents\programacion\Backend\proyecto\ProyectoFinal_UenoValeria\src\controllers\carrito\carrito.controller.js:24:23)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-08-18T17:06:41.685] [ERROR] archivo - Cannot read properties of null (reading '_id')

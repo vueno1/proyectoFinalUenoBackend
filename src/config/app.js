@@ -12,26 +12,28 @@ require("../config/config")
 const cookieParser = require("cookie-parser")
 const session = require('express-session')
 const Handlebars = require('handlebars')
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }))
+app.use(express.static(path.join(path.dirname(''), './src/public'))) //conecta index.js
 
-app.use(express.static("public"))
-app.use("/uploads", express.static("uploads"))
 
 app.use(cookieParser())
 app.use(session({
     store: MongoStore,
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    // cookie: {
+    //     expires: 300000 //5min de inactividad
+    // }
 }))
 
 app.use(passport.initialize())
 app.use(passport.session()) 
 
-app.set('views', path.join(path.dirname(''), './src/views'))
+app.set('views', path.join(path.dirname(''), './src/public/views')) //conecta views
 
 app.engine('.hbs', exphbs.engine({
     handlebars: allowInsecurePrototypeAccess(Handlebars), 
