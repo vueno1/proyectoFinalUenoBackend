@@ -5,7 +5,7 @@ require("dotenv").config()
 const transporter = require("../../config/nodemailer")
 const log4js = require("../../config/log")
 const logger = log4js.getLogger()
-
+const {mostrarTodosMensajes} = require("../../controllers/mensajes/mensaje.controller")
 const {buscarTodosUser,buscarUserxId} = require("../../services/user/user.service")
 const {getCarrito,getCarritoArray, deleteCarritoPorId} = require("../../services/carrito/carrito.service")
 const {getProductos} = require("../../services/productos/producto.service")
@@ -85,7 +85,9 @@ async function postRegister (req,res){
 }
 
 async function getIndex(req, res){
-    try{   
+    try{  
+        const mensajes = await mostrarTodosMensajes()
+        console.log(mensajes)
         const productos = await getProductos()
         const user = await buscarUserxId({
             _id: req.user._id
@@ -95,7 +97,8 @@ async function getIndex(req, res){
             nombre: user.name,
             avatar: user.avatar,
             productos: productos,
-            carrito: carrito
+            carrito: carrito,
+            mensajes: mensajes
         })
     }
     catch(error){

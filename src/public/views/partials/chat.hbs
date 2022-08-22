@@ -1,17 +1,13 @@
-<div class="jumbotron">
+<div class="mensajes">
     <h1>Centro de Mensajes</h1>
     <form action="/mensajes" method="post">
-        <input type="text" name="" id="" placeholder="nombre">
-        <input type="text" placeholder="mensaje">
+        <input type="text" name="nombre" id="" placeholder="nombre">
+        <input type="text" name="mensaje" placeholder="mensaje">
         <button type="submit">enviar</button>
     </form>
 
-        {{!-- <input type="text" id="inputUsername" class="form-control w-50 my-2 mr-2" placeholder="Ingresá tu email" required>
-    
-                <form id="formPublicarMensaje" class="form-inline" autocomplete="off">
-                    <div class="form-group">
-                        <input id="inputMensaje" type="text" class="form-control my-2 mr-2" placeholder="Ingresá un mensaje..." required>
-                        <button id="btnEnviar" type="submit" class="btn btn-primary my-2">Enviar!</button>
-                    </div>
-                </form> --}}
+    {{#each mensajes}}
+        <p>{{this.nombre}}</p>
+        <p>{{this.mensaje}}</p>
+    {{/each}}
 </div>

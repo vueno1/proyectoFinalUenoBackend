@@ -1,14 +1,9 @@
 const { Router } = require('express');
 const router = Router();
-const {io} = require("../config/socket");
-const contenedorMensajes = require("../contenedores/contenedor.memoria")
-const mensajesAPI = new contenedorMensajes()
+const {
+    guardarMensajes
+} = require("../controllers/mensajes/mensaje.controller")
 
-router.get("/", async (req,res) =>{
-    const mostrarMensajes = await mensajesAPI.listarAll()
-    res.redirect("/index")
-})
+router.post("/mensajes", guardarMensajes)
 
-router.post("/mensajes", async(req,res) =>{
-    
-})
+module.exports = router

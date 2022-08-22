@@ -1,11 +1,24 @@
-const express = require("express");
+const app = require("./app")
 const {Server:IOServer} = require("socket.io");
 const {Server:HttpServer} = require("http")
-
-const app = express()
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
-app.use(express.static("./public"))
+// const contenedorMensajes = require("../contenedores/contenedor.memoria")
+// const mensajesAPI = new contenedorMensajes()
 
-module.exports = {io}
+// app.post ("/mensajes", async (req,res) =>{
+//     const mensajes = await req.body
+//     await mensajesAPI.guardar(mensajes)
+//     console.log(mensajes)
+//     res.redirect("/index")
+// })
+
+const {mostrarTodosMensajes} = require("../controllers/mensajes/mensaje.controller")
+
+io.on("connection", async function(socket) {
+    console.log("usuario conectado x socket")
+    socket.emit("mensajeNuevo", await mostrarTodosMensajes())
+})
+
+module.exports = {httpServer, io}

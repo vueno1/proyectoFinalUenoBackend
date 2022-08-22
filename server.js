@@ -28,29 +28,23 @@ if(argumento === cluster) {
     }
 
 } else {
-    const server = require("./src/config/app")
+    const {httpServer} = require("./src/config/socket")
 
-    // const {createServer} = require("http")
-    // const {Server} = require("socket.io")
+    // const {Server: HttpServer} = require("http")
+    // const {Server: IOServer} = require("socket.io")
+    // const httpServer = new HttpServer(server)
+    // const io = new IOServer(httpServer)
+    // console.log(io)
 
-    // const httpServer = createServer(server)
-    // const io = new Server(httpServer, {/* options */})
+    // const messages = [
+    //     {autor: "JUAN", text: "hola!!!"},
+    //     {autor: "MARIA", text: "como estas!!!"}
+    // ]
 
-    const {Server: HttpServer} = require("http")
-    const {Server: IOServer} = require("socket.io")
-
-    const httpServer = new HttpServer(server)
-    const io = new IOServer(httpServer)
-
-    const messages = [
-        {autor: "JUAN", text: "hola!!!"},
-        {autor: "MARIA", text: "como estas!!!"}
-    ]
-
-    io.on("connection", function(socket){
-        console.log('un cliente se ha conectado')
-        socket.emit("mensaje", messages)
-    })
+    // io.on("connection", function(socket){
+    //     console.log('un cliente se ha conectado')
+    //     socket.emit("mensaje", messages)
+    // })
     
     httpServer.listen(PORT, ()=>{
         console.log(`escuchando el puerto [***FORK***] =  ${PORT}`)
