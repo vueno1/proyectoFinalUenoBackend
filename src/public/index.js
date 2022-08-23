@@ -1,7 +1,10 @@
 const socket = io.connect()
-socket.on("mensajeNuevo", data =>{
-    console.log("conexion desde el cliente index.js")
-    console.log(data)
+
+socket.on("mensajes", data =>{
+    console.log("hola! desde el cliente!!!")
+    console.log({
+        misMensajes: data
+    })
 })
 
 

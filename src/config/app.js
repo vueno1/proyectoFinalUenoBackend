@@ -43,6 +43,7 @@ app.engine('.hbs', exphbs.engine({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
+
 app.use('/api/productos', productosRoutes);
 app.use('/api/carrito', carritoRoute);
 app.use("/", usuarioRoute)

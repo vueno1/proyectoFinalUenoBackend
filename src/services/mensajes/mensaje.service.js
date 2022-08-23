@@ -1,9 +1,7 @@
-const contenedorMemoria = require("../../contenedores/contenedor.memoria")
-const misMensajes = new contenedorMemoria()
+const {misMensajes} = require("../../daos/index")
 
 async function getTodosMensajes(){
-    const guardado = await misMensajes.listarAll()
-    console.log(`service: ${guardado}`)
+    const guardado = misMensajes.mostrarTodo()
     return guardado
 }
 

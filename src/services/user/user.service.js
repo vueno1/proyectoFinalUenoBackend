@@ -1,11 +1,15 @@
-const Usuario = require('../../models/user')
+const {misUsuarios} = require("../../daos/index")
 
 async function buscarTodosUser() {
-    return await Usuario.find()
+    return await misUsuarios.mostrarTodo()
 }
 
 async function buscarUserxId(id){
-    return await Usuario.findById(id)
+    return await misUsuarios.buscarPorId(id)
 }
 
-module.exports = {buscarTodosUser, buscarUserxId}
+async function createUser(u){
+    return await misUsuarios.guardar(u)
+}
+
+module.exports = {buscarTodosUser, buscarUserxId, createUser}

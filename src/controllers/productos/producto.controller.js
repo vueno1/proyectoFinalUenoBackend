@@ -1,5 +1,5 @@
 const log4js = require("../../config/log")
-const logger = log4js.getLogger("archivo")
+const logger = log4js.getLogger()
 
 const {
     getProductos,

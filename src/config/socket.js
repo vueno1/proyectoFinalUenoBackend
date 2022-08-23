@@ -3,22 +3,13 @@ const {Server:IOServer} = require("socket.io");
 const {Server:HttpServer} = require("http")
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
-
-// const contenedorMensajes = require("../contenedores/contenedor.memoria")
-// const mensajesAPI = new contenedorMensajes()
-
-// app.post ("/mensajes", async (req,res) =>{
-//     const mensajes = await req.body
-//     await mensajesAPI.guardar(mensajes)
-//     console.log(mensajes)
-//     res.redirect("/index")
-// })
-
-const {mostrarTodosMensajes} = require("../controllers/mensajes/mensaje.controller")
+const {getTodosMensajes} = require("../services/mensajes/mensaje.service")
 
 io.on("connection", async function(socket) {
-    console.log("usuario conectado x socket")
-    socket.emit("mensajeNuevo", await mostrarTodosMensajes())
+    console.log("USUARIO CONECTADO!")
+
+    const mensajes = await getTodosMensajes()
+    io.sockets.emit("mensajes", mensajes)
 })
 
 module.exports = {httpServer, io}

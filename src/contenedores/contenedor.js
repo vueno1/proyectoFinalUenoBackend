@@ -56,6 +56,24 @@ module.exports = class ContenedorMongodb {
             console.log(error.message)
         }
     }
+
+    async buscarPorId(id){
+        try {
+            const buscar = this.collection.findById({_id:id})
+            return buscar
+        } catch(e) {
+            console.log(e.message)
+        }
+    }
+
+    async borrarTodo(){
+        try{
+            return this.collection.remove()
+
+        }catch(e){
+            console.log(e.message)
+        }
+    }
     
 }
 
