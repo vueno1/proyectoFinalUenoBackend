@@ -1,14 +1,31 @@
-<div class="user">
-    <h3> hola {{nombre}} </h3>
-    <div>
-        <img width="50" src="{{avatar}}" alt="not found">
+<div class="user_container">
+    <div class="user">
+        <h3> Hola {{nombre}}!</h3>
+        <div>
+            <img width="50" src="{{avatar}}" alt="not found">
+        </div>
+        <div class="btn_logout">
+            <button class="btn btn-info" onclick="location.href='/logout'">logout</button>
+        </div>
     </div>
-
 </div>
 
 <style>
+    .user_container{
+        display: flex;
+        justify-content: right;
+    }
+    h3{
+        font-style: italic;
+    }
     .user{
-        text-align: right;
+        text-align: center;
         margin-right: 50px;
+        background-color: rgb(180, 221, 240);
+        border-radius: 100px;
+    }
+    .btn_logout {
+        margin-top: 10px;
+        padding-bottom: 15px;
     }
 </style>

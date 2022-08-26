@@ -1,42 +1,46 @@
 <div class="carrito">
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">numero de carrito:</th>
-      <th scope="col">productos elegidos:</th>
+  {{#each carrito}}
+    <h4>Carrito Id → {{this.id}}</h4>
+  {{/each}}
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">imagen</th>
+        <th scope="col">nombre</th>
+        <th scope="col">precio</th>
+        <th scope="col">cantidad</th>
+      </tr>
+    </thead>
+      {{#each carrito}}
+        <tbody>
+            {{#each productos}}
+              <tr>
+                  <th scope="row">{{this._id}}</th>
+                  <td><img width="50" src="{{this.foto}}" alt="not found"></td>
+                  <td>{{this.nombre}}</td>
+                  <td>{{this.precio}}</td>
+                  <td>{{this.cantidad}}</td>
+                  <td><button class="btn btn-primary" onclick="location.href=`/api/carrito/deleteProducto/{{this._id}}`">eliminar</button></td>
+              </tr>
+            {{/each}}
+        </tbody>
+      {{/each}}
+  </table>
 
-    </tr>
-  </thead>
-  <tbody>
-
-    {{#each carrito}}
-        <tr>
-            <th scope="row">{{this.id}}</th>
-              {{#each productos}}
-                <td>
-                  <th>
-                    <ul>
-                      <li>{{this.nombre}}</li>
-                      <li>{{this.precio}}</li>
-                      <li><img width="50" src="{{this.foto}}"  alt="not found"></li>
-                      <li><button class="btn btn-primary" onclick="location.href=`/api/carrito/deleteProducto/{{this._id}}`">eliminar</button></li>
-                    </ul>
-                  </th>
-                </td>
-              {{/each}}
-        </tr>
-    {{/each}}
-  </tbody>
-</table>
-
-<button class="btn btn-primary" onclick="location.href='/enviarMensajes'" >finalizar compra</button>
-
+  <button class="btn btn-primary" onclick="location.href='/enviarMensajes'" >finalizar compra</button>
 </div>
 
 <style>
-  .carrito{
-    border: black solid;
-    margin: 50px 20px 50px 20px;
+  h4{
+    background-color: rgb(202, 194, 194);
   }
+  .carrito{
+    margin: 50px 50px 50px 50px;
+    border: black solid;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
 </style>

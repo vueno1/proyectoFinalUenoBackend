@@ -54,7 +54,10 @@ async function postRegister (req,res){
         
         if(usuariosRegistrados.find(usuario => usuario.email === email)){
             logger.warn("el usuario ya esta registrado!")
-            res.render("register_error")
+            const usuario = await usuariosRegistrados.find(usuario=>usuario.email===email)
+            res.render("register_error", {
+                usuarioRepetido: usuario
+            })
         }        
         const salt = await bcrypt.genSalt(10) //ejecuta el algoritmo 10 veces.
         const hash = await bcrypt.hash(password, salt)
@@ -92,9 +95,10 @@ async function getIndex(req, res){
         const mensajes = await getTodosMensajes()
         const productos = await getProductos()
         const idUser=await req.user._id
-        const user = await buscarUserxId(idUser)      
+        const user = await buscarUserxId(idUser)   
         const carrito = await getCarritoArray()
         res.render("index", {
+            email: user.email,
             nombre: user.name,
             avatar: user.avatar,
             productos: productos,
@@ -103,7 +107,7 @@ async function getIndex(req, res){
         })
     }
     catch(error){
-        logger.warn(`warning = ${error}`)
+        logger.warn(`error en Index = ${error}`)
     }
 }
 
@@ -154,7 +158,7 @@ async function getLogout(req, res){
         req.session.destroy() 
         const carrito = await getCarrito()
         if(carrito) {
-            await deleteCarritoPorId(carrito._id)     
+            await deleteCarritoPorId(carrito._id) 
         }
         res.redirect("/")        
     }

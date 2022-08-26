@@ -1,18 +1,20 @@
-<h1>ECOMMERCE</h1>
+<h1>Bienvenidos al "Mercadito"</h1>
 
-    {{>user_logged}}
-        <div class="btn_logout">
-            <button class="btn btn-primary" onclick="location.href='/logout'">logout</button>
-        </div>
+{{>user_logged}}
+{{!-- <div class="btn_logout">
+    <button class="btn btn-primary" onclick="location.href='/logout'">logout</button>
+</div> --}}
 
-    {{>carrito}}
-
-    {{>productos}}
-
-    {{>chat}}
-
+{{>carrito}}
+{{>productos}}
+{{>chat}}
+{{>chat.respuestas}}
 
 <style>
+
+    h1{
+        margin: 50px;
+    }
     .btn_logout{
         margin-right: 50px;
         text-align: right;

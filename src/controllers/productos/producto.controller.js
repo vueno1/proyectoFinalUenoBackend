@@ -10,8 +10,8 @@ const {
 
 async function mostrarTodo(req,res) {
     const productos = await getProductos()
-    res.send({
-        catalogo: productos
+    res.render("index", {
+        productos:productos
     })
 }
 

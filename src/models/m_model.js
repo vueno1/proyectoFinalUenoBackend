@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 const mensajeCollection = "mensajes"; 
 
 const mensajeSchema = new mongoose.Schema({
-    nombre: {type: String, required: true},
-    mensaje: {type: String, require:true}
+    email: {type:String, require:true},
+    mensaje: {type: String, require:true},
+    timestamp: {type:Date, default:Date.now()}
 });
 
 const Mensaje  = mongoose.model(

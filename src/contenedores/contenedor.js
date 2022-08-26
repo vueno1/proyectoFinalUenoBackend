@@ -65,15 +65,6 @@ module.exports = class ContenedorMongodb {
             console.log(e.message)
         }
     }
-
-    async borrarTodo(){
-        try{
-            return this.collection.remove()
-
-        }catch(e){
-            console.log(e.message)
-        }
-    }
     
 }
 

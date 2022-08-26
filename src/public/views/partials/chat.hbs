@@ -1,13 +1,26 @@
 <div class="mensajes">
-    <h1>Centro de Mensajes</h1>
-    <form action="/mensajes" method="post">
-        <input type="text" name="nombre" id="" placeholder="nombre">
-        <input type="text" name="mensaje" placeholder="mensaje">
-        <button type="submit">enviar</button>
+    <h3>Centro de Mensajes</h3>
+    <form action="/mensajes" method="post">    
+        <div class="mb-3">
+            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+            <textarea type="text" name="mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-
-    {{#each mensajes}}
-        <p>{{this.nombre}}</p>
-        <p>{{this.mensaje}}</p>
-    {{/each}}
 </div>
+
+<style>
+    h3{
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    .mensajes{
+        margin: 100px 50px 50px 50px;
+        background-color: grey;
+        padding: 20px;
+        border-radius: 10px;
+    }
+</style>

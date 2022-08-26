@@ -1,0 +1,20 @@
+<div class="respuestas">
+    {{#each mensajes}}
+        <div class="card">
+            <div class="card-header">
+                {{this.email}}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>{{this.mensaje}}</p>
+                </blockquote>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+<style>
+    .card{
+        margin: 20px 50px;
+    }
+</style>

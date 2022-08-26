@@ -3,7 +3,7 @@ const logger = log4js.getLogger()
 
 const {
     getCarrito,
-    guardarEnCarrito,
+    postEnCarrito,
     carritoNuevoId,   
     getCarritoArray, 
     deleteCarritoPorId,
@@ -28,10 +28,10 @@ async function guardarProductoEnCarrito(req,res) {
         
         if(hayCarrito.length <=0) {
             const idCarrito = await carritoNuevoId()
-            await guardarEnCarrito(idCarrito, idProducto)
+            await postEnCarrito(idCarrito, idProducto)
         }else {
             const carrito = await getCarrito()
-            await guardarEnCarrito(carrito._id, idProducto)
+            await postEnCarrito(carrito._id, idProducto)
         }
         res.redirect("/index")  
     }
