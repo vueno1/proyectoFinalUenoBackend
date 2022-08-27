@@ -13,10 +13,10 @@ async function carritoNuevoId(){
 }
 
 async function postEnCarrito(idCarrito,idProducto) {
-    const carrito = await miCarrito.mostrarCarrito() //todo el carrito 
-    const productosEnCarrito = carrito.productos //los productos que estan en carrito al momento
-    const productos = await misProductos.mostrarTodo() //muestro mis productos
-    const productoElegido = await productos.find(producto=>producto.id===idProducto) //el producto elegido    
+    const carrito = await miCarrito.mostrarCarrito() 
+    const productosEnCarrito = carrito.productos 
+    const productos = await misProductos.mostrarTodo() 
+    const productoElegido = await productos.find(producto=>producto.id===idProducto) 
     const existeNombre = await productosEnCarrito.find(e => e.nombre === productoElegido.nombre)
 
     if(productosEnCarrito.length <= 0){
@@ -62,8 +62,38 @@ async function deleteCarritoPorId(idCarrito){
 } 
 
 async function deleteProductoxCarrito(idProducto, idCarrito){
-    const carrito = await miCarrito.borrarProductoDeCarrito(idProducto,idCarrito)
-    return carrito
+    const mostrarCarrito = await miCarrito.mostrarCarrito()
+    const productos = await misProductos.mostrarTodo()
+    const productoElegido = await productos.find(producto=>producto.id===idProducto) 
+    const productosEnCarrito = mostrarCarrito.productos
+    const productoAEliminar = productosEnCarrito.find(e => e.nombre === productoElegido.nombre)
+    console.log(productoAEliminar.cantidad)
+
+    if(productoAEliminar.cantidad === 1){
+        const productosFiltrados = productosEnCarrito.filter(e =>e.nombre !== productoElegido.nombre)
+         const carritoNuevo = {
+             _id: mostrarCarrito._id,
+             productos: productosFiltrados,
+             timestamp: mostrarCarrito.timestamp
+         }
+        return await miCarrito.updateCarrito(idCarrito, carritoNuevo)
+    }
+    const productosFiltrados = productosEnCarrito.filter(e =>e.nombre !== productoElegido.nombre)
+    const objetoAnterior = productosEnCarrito.find(e=>e.nombre === productoElegido.nombre)
+     const nuevoProducto = {
+         nombre: objetoAnterior.nombre,
+         foto: objetoAnterior.foto,
+         precio: objetoAnterior.precio,
+         cantidad: objetoAnterior.cantidad-1,
+         _id: objetoAnterior._id
+     }
+     productosFiltrados.push(nuevoProducto)
+     const carritoNuevo = {
+         _id: mostrarCarrito._id,
+         productos: productosFiltrados,
+         timestamp: mostrarCarrito.timestamp
+     }
+    return await miCarrito.updateCarrito(idCarrito, carritoNuevo)
 }
 
 module.exports = {

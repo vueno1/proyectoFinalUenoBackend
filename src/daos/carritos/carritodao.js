@@ -73,8 +73,8 @@ module.exports = class CarritosDaoMongoDB extends ContenedorMongodb {
     async borrarProductoDeCarrito(idProducto, idCarrito) {
         try{
             const productoElegido = await Producto.findOne({_id:idProducto})
-            await Carrito.findByIdAndUpdate(idCarrito, {$pull: {"productos": productoElegido}})
-            return Carrito.find()                      
+            await Carrito.findByIdAndUpdate(idCarrito, {$pull: {"productos": productoElegido}}) 
+            return await Carrito.find()                    
         }
         catch(error){
             console.log(error.message)
