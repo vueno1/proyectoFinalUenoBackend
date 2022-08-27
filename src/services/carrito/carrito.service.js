@@ -38,16 +38,22 @@ async function postEnCarrito(idCarrito,idProducto) {
         }
         return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo)
     } else {
-
-        await miCarrito.updateProductoEnCarrito(idCarrito, idProducto)
-        // const buscar = await productosEnCarrito.find(objeto =>{
-        //     return objeto.nombre === productoElegido.nombre
-        // })
-
-        // buscar.cantidad = (buscar.cantidad)+1
-        // await miCarrito.updateProductoEnCarrito(idCarrito, buscar)
-
-        return await miCarrito.mostrarTodo()
+       const productosFiltrados = productosEnCarrito.filter(e =>e.nombre !== productoElegido.nombre)
+       const objetoAnterior = productosEnCarrito.find(e=>e.nombre === productoElegido.nombre)
+        const nuevoProducto = {
+            nombre: objetoAnterior.nombre,
+            foto: objetoAnterior.foto,
+            precio: objetoAnterior.precio,
+            cantidad: objetoAnterior.cantidad+1,
+            _id: objetoAnterior._id
+        }
+        productosFiltrados.push(nuevoProducto)
+        const carritoNuevo = {
+            _id: carrito._id,
+            productos: productosFiltrados,
+            timestamp: carrito.timestamp
+        }
+        return await miCarrito.updateCarrito(idCarrito, carritoNuevo)
     }     
 }
 

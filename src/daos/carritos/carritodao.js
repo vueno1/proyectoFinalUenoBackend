@@ -33,27 +33,16 @@ module.exports = class CarritosDaoMongoDB extends ContenedorMongodb {
         }
     }
 
-    async updateProductoEnCarrito(carritoId, idProducto){
+    async updateCarrito(idCarrito, reemplazo) {
         try{
-            // await Carrito.findByIdAndUpdate(carritoId, {$set:{"productos": producto}} )
-            return await Carrito.aggregate([
-                {
-                $match:{_id:carritoId}
-            }, 
-            {
-                $group: {_id:idProducto, cantidad:{$sum: "cantidad"}}
-            }])
-
+            await Carrito.findByIdAndUpdate(idCarrito, {$set: reemplazo})
         }catch(e){
-            console.log(e);
+            console.log(e)
         }
     }
 
-
-
     async guardarEnCarrito(carritoId,producto) {
         try{
-            // const productoElegido = await Producto.findOne({_id:id})
             await Carrito.findByIdAndUpdate(carritoId , {$push: {"productos": producto}}) 
             return await Carrito.find()           
         }
