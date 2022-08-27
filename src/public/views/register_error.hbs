@@ -1,3 +1,24 @@
-<h1>Error al registrarse, vuelva a registrarse!</h1>
-<p>{{usuarioRepetido.name}} ya esta registrada!</p>
-<button class="btn btn-success" onclick="location.href='/register'" >ir a registro</button>
+<div class="registro_error">
+    <div class="alert alert-warning" role="alert">
+        <h3>Error en el registro! 👀</h3>
+    </div>
+
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Ya estas registrada/o como usuario = "{{usuarioRepetido.name}}"</h4>
+        <p>ID = #{{usuarioRepetido._id}}</p>
+        <p>EMAIL = {{usuarioRepetido.email}}</p>
+        <p></p>
+        <hr>  
+    </div>
+    <button class="btn btn-success" onclick="location.href='/register'" >ir a registro</button>
+</div>
+
+<style>
+    .registro_error{
+        margin: 200px;
+    }
+
+    body{
+        background-color: black;
+    }
+</style>

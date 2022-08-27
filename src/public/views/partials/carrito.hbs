@@ -1,12 +1,13 @@
 <div class="carrito">
+  <h4>Su Carrito:</h4>
   {{#each carrito}}
-    <h4>Carrito Id → {{this.id}}</h4>
+    <p>identificado de Carrito → {{this.id}}</p>
   {{/each}}
 
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">id Producto</th>
         <th scope="col">imagen</th>
         <th scope="col">nombre</th>
         <th scope="col">precio</th>
@@ -20,7 +21,7 @@
                   <th scope="row">{{this._id}}</th>
                   <td><img width="50" src="{{this.foto}}" alt="not found"></td>
                   <td>{{this.nombre}}</td>
-                  <td>{{this.precio}}</td>
+                  <td>${{this.precio}}.00</td>
                   <td>{{this.cantidad}}</td>
                   <td><button class="btn btn-primary" onclick="location.href=`/api/carrito/deleteProducto/{{this._id}}`">eliminar</button></td>
               </tr>

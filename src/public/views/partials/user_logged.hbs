@@ -1,12 +1,8 @@
 <div class="user_container">
     <div class="user">
-        <h3> Hola {{nombre}}!</h3>
-        <div>
-            <img width="50" src="{{avatar}}" alt="not found">
-        </div>
-        <div class="btn_logout">
-            <button class="btn btn-info" onclick="location.href='/logout'">logout</button>
-        </div>
+        <p>Hola {{nombre}}</p>
+        <img width="50" src="{{avatar}}" alt="not found">
+        <button class="btn btn-info" onclick="location.href='/logout'">out!</button>
     </div>
 </div>
 
@@ -19,10 +15,12 @@
         font-style: italic;
     }
     .user{
-        text-align: center;
-        margin-right: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 20px;
         background-color: rgb(180, 221, 240);
-        border-radius: 100px;
+        padding: 10px;
     }
     .btn_logout {
         margin-top: 10px;

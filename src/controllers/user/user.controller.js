@@ -58,32 +58,33 @@ async function postRegister (req,res){
             res.render("register_error", {
                 usuarioRepetido: usuario
             })
-        }        
-        const salt = await bcrypt.genSalt(10) //ejecuta el algoritmo 10 veces.
-        const hash = await bcrypt.hash(password, salt)
-        
-        const user = {
-            email: email, 
-            password: hash,
-            name: name,
-            address: address,
-            age: age, 
-            phone: phone,
-            avatar: avatar
-        }     
-        await createUser(user)
-        logger.info("usuario registrado con exito!")
-
-        //--------------------------------------------------------
-        const mailUsuarioNuevo = {
-            from: "servidor",
-            to: process.env.MAIL_ADMIN,
-            subject: "nuevo Usuario Registrado",
-            html: `datos del usuario: ${user}`
-        }
-        await transporter.sendMail(mailUsuarioNuevo)
-        logger.info("informacion enviada por mail al administrador")    
-        res.redirect("/")
+        } else{
+            const salt = await bcrypt.genSalt(10) //ejecuta el algoritmo 10 veces.
+            const hash = await bcrypt.hash(password, salt)
+            
+            const user = {
+                email: email, 
+                password: hash,
+                name: name,
+                address: address,
+                age: age, 
+                phone: phone,
+                avatar: avatar
+            }     
+            await createUser(user)
+            logger.info("usuario registrado con exito!")
+    
+            //--------------------------------------------------------
+            const mailUsuarioNuevo = {
+                from: "servidor",
+                to: process.env.MAIL_ADMIN,
+                subject: "nuevo Usuario Registrado",
+                html: `datos del usuario: ${user}`
+            }
+            await transporter.sendMail(mailUsuarioNuevo)
+            logger.info("informacion enviada por mail al administrador")    
+            res.redirect("/")
+        }       
     }
     catch(error){
         logger.warn(`warning = ${error}`)

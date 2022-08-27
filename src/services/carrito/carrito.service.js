@@ -28,6 +28,7 @@ async function postEnCarrito(idCarrito,idProducto) {
             _id: productoElegido._id        
         }
         return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo)
+
     } else if (!existeNombre){
         const productoNuevo = {
             nombre: productoElegido.nombre,
@@ -37,6 +38,7 @@ async function postEnCarrito(idCarrito,idProducto) {
             _id: productoElegido._id        
         }
         return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo)
+        
     } else {
        const productosFiltrados = productosEnCarrito.filter(e =>e.nombre !== productoElegido.nombre)
        const objetoAnterior = productosEnCarrito.find(e=>e.nombre === productoElegido.nombre)
@@ -67,8 +69,6 @@ async function deleteProductoxCarrito(idProducto, idCarrito){
     const productoElegido = await productos.find(producto=>producto.id===idProducto) 
     const productosEnCarrito = mostrarCarrito.productos
     const productoAEliminar = productosEnCarrito.find(e => e.nombre === productoElegido.nombre)
-    console.log(productoAEliminar.cantidad)
-
     if(productoAEliminar.cantidad === 1){
         const productosFiltrados = productosEnCarrito.filter(e =>e.nombre !== productoElegido.nombre)
          const carritoNuevo = {
