@@ -27,9 +27,9 @@ async function mostrarPorId(req,res){
 async function guardarProducto(req,res){
     try {
         const producto = await req.body
-        await postProducto(producto)
+        const ingreso = await postProducto(producto)
         res.send({
-            agregado: producto
+            agregado: ingreso
         })
     } catch(e) {
         logger.error(e)

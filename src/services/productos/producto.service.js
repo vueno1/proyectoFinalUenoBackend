@@ -12,6 +12,9 @@ async function getProductosById(id){
 }
 
 async function postProducto(p) {
+    const productos = await misProductos.mostrarTodo()
+    const existe = await productos.find(producto=>producto.nombre===p.nombre)
+    if(existe) return "el producto ya fue ingresado!"
     return await misProductos.guardar(p)
 }
 
