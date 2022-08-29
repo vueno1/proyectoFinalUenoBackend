@@ -59,7 +59,7 @@ module.exports = class ContenedorMongodb {
 
     async buscarPorId(id){
         try {
-            const buscar = this.collection.findById({_id:id})
+            const buscar = await this.collection.findOne({_id:id})
             return buscar
         } catch(e) {
             console.log(e.message)

@@ -114,12 +114,10 @@ async function getIndex(req, res){
 
 async function getEnviarMensajes(req,res){
     try {
-        const carrito = await getCarritoArray()
-        const user = await buscarUserxId({
-            _id: req.user._id
-        })
+        const carrito = await getCarrito()
+        const user = await buscarUserxId({_id: req.user._id})
 
-        if(carrito.length >=1) {
+        if(carrito) {
             const mailPedidos = {
                 from: "servidor",
                 to: process.env.MAIL_ADMIN,
@@ -127,27 +125,33 @@ async function getEnviarMensajes(req,res){
                 html: `datos del pedido = ${carrito}`
             }
             await transporter.sendMail(mailPedidos)
-            logger.info("pedido enviado por mail al administrador")
+            logger.info("📧 pedido enviado por mail al administrador")
 
+            //recordar poner "join ride-guide" en mi whatsapp para la conexion-
             twilioClient.messages
                 .create({
-                    body: `${user.email} realizo un pedido`,
+                    body: ` ${user.email} realizo un pedido 🛍️`,
                     from: process.env.TWILIO_WHATSAPP,
                     to: process.env.WHATSAPP
                 })
-                .then(message => logger.info(`whatsapp enviado = ${message.sid}`))
+                .then(message => logger.info(`✅ whatsapp enviado = ${message.sid}`))
                 .done()
 
             twilioClient.messages
                 .create({
-                    body: `Hemos recibido su pedido, la misma se encuentra en proceso`,
+                    body: `Hola!😊, hemos recibido su pedido, la misma se encuentra en proceso`,
                     from: process.env.TWILIO_SMS,
                     to: `+${user.phone}`
                 })
-                .then(message=> logger.info(`sms enviado = ${message.sid}`))
+                .then(message=> logger.info(`✅ sms enviado = ${message.sid}`))
                 .done()
+        
+            await deleteCarritoPorId(carrito._id)
+            res.redirect("/index")
+            } else {
+            res.redirect("/index")
         }
-        res.redirect("/index")
+
     } catch(e) {
         logger.warn(e)
     }
