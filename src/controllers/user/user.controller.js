@@ -11,8 +11,7 @@ const {getTodosMensajes} = require("../../services/mensajes/mensaje.service")
 const {buscarTodosUser, buscarUserxId, createUser} = require("../../services/user/user.service")
 const {getCarrito,getCarritoArray, deleteCarritoPorId} = require("../../services/carrito/carrito.service")
 const {getProductos} = require("../../services/productos/producto.service")
-const {getOrden, postOrden} = require("../../services/orden/orden.service")
-const {mostrarOrden,guardarOrden} = require("../orden/orden.controller")
+const {postOrden} = require("../../services/orden/orden.service")
 
 async function getLogin(req, res) {
     try{
