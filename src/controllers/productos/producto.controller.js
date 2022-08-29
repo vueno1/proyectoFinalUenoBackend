@@ -3,6 +3,7 @@ const logger = log4js.getLogger()
 
 const {
     getProductos,
+    getProductosById,
     postProducto,
     putProducto,
     deleteProducto
@@ -12,6 +13,14 @@ async function mostrarTodo(req,res) {
     const productos = await getProductos()
     res.render("index", {
         productos:productos
+    })
+}
+
+async function mostrarPorId(req,res){
+    const id = await req.params.id
+    const producto = await (getProductosById(id))
+    res.send({
+        productoSeleccionado: producto
     })
 }
 
@@ -57,6 +66,7 @@ async function eliminarProducto(req,res) {
 
 module.exports = {
     mostrarTodo,
+    mostrarPorId,
     guardarProducto,
     updateProducto,
     eliminarProducto

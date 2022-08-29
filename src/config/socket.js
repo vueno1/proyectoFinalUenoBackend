@@ -6,7 +6,7 @@ const io = new IOServer(httpServer)
 const {getTodosMensajes} = require("../services/mensajes/mensaje.service")
 
 io.on("connection", async function(socket) {
-    console.log("USUARIO CONECTADO!")
+    console.log("***HELLO!👋👋👋 NUEVO USUARIO!***")
 
     const mensajes = await getTodosMensajes()
     io.sockets.emit("mensajes", mensajes)

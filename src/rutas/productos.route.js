@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const {
     mostrarTodo,
+    mostrarPorId,
     guardarProducto,
     updateProducto,
     eliminarProducto
@@ -9,6 +10,7 @@ const {
 
 
 router.get("/", mostrarTodo)
+router.get("/:id", mostrarPorId)
 router.post('/', guardarProducto)
 router.put("/:id", updateProducto)
 router.delete("/:id", eliminarProducto)
