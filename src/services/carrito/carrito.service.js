@@ -12,7 +12,7 @@ async function carritoNuevoId(){
     return await miCarrito.crearCarrito()
 }
 
-async function postEnCarrito(idCarrito,idProducto) {
+async function postEnCarrito(idCarrito,idProducto,direccion) {
     const carrito = await miCarrito.mostrarCarrito() 
     const productosEnCarrito = carrito.productos 
     const productos = await misProductos.mostrarTodo() 
@@ -27,7 +27,7 @@ async function postEnCarrito(idCarrito,idProducto) {
             cantidad: 1, 
             _id: productoElegido._id        
         }
-        return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo)
+        return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo, direccion)
 
     } else if (!existeNombre){
         const productoNuevo = {
@@ -37,7 +37,7 @@ async function postEnCarrito(idCarrito,idProducto) {
             cantidad: 1, 
             _id: productoElegido._id        
         }
-        return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo)
+        return await miCarrito.guardarEnCarrito(idCarrito, productoNuevo, direccion)
         
     } else {
        const productosFiltrados = productosEnCarrito.filter(e =>e.nombre !== productoElegido.nombre)
@@ -53,6 +53,7 @@ async function postEnCarrito(idCarrito,idProducto) {
         const carritoNuevo = {
             _id: carrito._id,
             productos: productosFiltrados,
+            direccionEntrega: direccion,
             timestamp: carrito.timestamp
         }
         return await miCarrito.updateCarrito(idCarrito, carritoNuevo)
@@ -89,7 +90,7 @@ async function deleteProductoxCarrito(idProducto, idCarrito){
      }
      productosFiltrados.push(nuevoProducto)
      const carritoNuevo = {
-         _id: mostrarCarrito._id,
+         _id: mostrarCarrito._id, 
          productos: productosFiltrados,
          timestamp: mostrarCarrito.timestamp
      }

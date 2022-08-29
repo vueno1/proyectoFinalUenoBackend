@@ -24,14 +24,15 @@ async function mostrarCarrito(req,res){
 async function guardarProductoEnCarrito(req,res) {
     try {
         const idProducto = req.params.id
-        const hayCarrito = await getCarritoArray()      
+        const hayCarrito = await getCarritoArray()     
+        const user = await req.user
         
         if(hayCarrito.length <=0) {
             const idCarrito = await carritoNuevoId()
-            await postEnCarrito(idCarrito, idProducto)
+            await postEnCarrito(idCarrito, idProducto, user.address)
         }else {
             const carrito = await getCarrito()
-            await postEnCarrito(carrito._id, idProducto)
+            await postEnCarrito(carrito._id, idProducto, user.address)
         }
         res.redirect("/index")  
     }

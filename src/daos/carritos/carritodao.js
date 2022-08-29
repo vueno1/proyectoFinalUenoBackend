@@ -41,9 +41,16 @@ module.exports = class CarritosDaoMongoDB extends ContenedorMongodb {
         }
     }
 
-    async guardarEnCarrito(carritoId,producto) {
+    async guardarEnCarrito(carritoId,producto,direccionEntrega) {
         try{
-            await Carrito.findByIdAndUpdate(carritoId , {$push: {"productos": producto}}) 
+            console.log(direccionEntrega)
+            await Carrito.updateOne(
+                {"_id": carritoId},
+                {
+                    $set: {"direccionEntrega": direccionEntrega},
+                    $push: {"productos": producto}
+            })
+            // await Carrito.findByIdAndUpdate(carritoId , {$push: {"productos": producto}}, {$set: {"direccionEntrega": direccionEntrega}})
             return await Carrito.find()           
         }
         catch(error) {

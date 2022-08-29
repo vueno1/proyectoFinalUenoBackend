@@ -11,6 +11,8 @@ const {getTodosMensajes} = require("../../services/mensajes/mensaje.service")
 const {buscarTodosUser, buscarUserxId, createUser} = require("../../services/user/user.service")
 const {getCarrito,getCarritoArray, deleteCarritoPorId} = require("../../services/carrito/carrito.service")
 const {getProductos} = require("../../services/productos/producto.service")
+const {getOrden, postOrden} = require("../../services/orden/orden.service")
+const {mostrarOrden,guardarOrden} = require("../orden/orden.controller")
 
 async function getLogin(req, res) {
     try{
@@ -146,6 +148,8 @@ async function getEnviarMensajes(req,res){
                 .then(message=> logger.info(`✅ sms enviado = ${message.sid}`))
                 .done()
         
+            await postOrden(user.email, carrito._id, carrito.productos)
+            logger.info("📤 orden generada!")            
             await deleteCarritoPorId(carrito._id)
             res.redirect("/index")
             } else {
