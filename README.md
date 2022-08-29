@@ -21,6 +21,7 @@ En ella podemos iniciar sesion, ver listado de productos, seleccionarlos y avisa
 * Base de datos: Mongodb con ORM Mongoose & Connect-Mongo
 * Vista: Express-handlebars
 * autenticacion: Passport __no use JWT (avisado al profesor)__
+* Chat: Websocket con Socket.io
 * Email: Nodemailer
 * Mensajes texto: Twilio 
 * Sesion: Express-Session 

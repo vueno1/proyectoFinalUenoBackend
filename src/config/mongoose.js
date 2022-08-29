@@ -1,5 +1,7 @@
 const mongoose = require ('mongoose')
 const config = require('./config')
+const log4js = require("./log")
+const logger = log4js.getLogger()
 
 try {
     mongoose.connect(
@@ -9,6 +11,6 @@ try {
         })
 
 } catch (error) {
-    console.log(error.message)
+    logger.error(error.message)
 }
 module.exports = mongoose;

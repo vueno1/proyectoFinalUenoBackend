@@ -43,7 +43,6 @@ module.exports = class CarritosDaoMongoDB extends ContenedorMongodb {
 
     async guardarEnCarrito(carritoId,producto,direccionEntrega) {
         try{
-            console.log(direccionEntrega)
             await Carrito.updateOne(
                 {"_id": carritoId},
                 {

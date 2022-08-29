@@ -2,6 +2,8 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 const Usuario = require('../models/user')
+const log4js = require("./log")
+const logger = log4js.getLogger()
 
 passport.use("local", new LocalStrategy(  
     {
@@ -21,7 +23,7 @@ passport.use("local", new LocalStrategy(
         }
 
      catch (error) {
-        console.log(error.message)
+        logger.error(error.message)
     }
 }
 ))

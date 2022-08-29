@@ -15,23 +15,20 @@ if(argumento === cluster) {
         }
 
         cluster.on("listening", (worker,address)=>{
-            logger.info(`worker = ${worker.process.pid}`)
+            logger.info(`worker 👷👷👷 = ${worker.process.pid}`)
         })
     } else {
         const {httpServer} = require("./src/config/socket")
          
         httpServer.listen(PORT, ()=>{
-            logger.debug(` escuchando el puerto [***CLUSTER***] = ${PORT}`)
+            logger.debug(`📢 Escuchando en el puerto [***CLUSTER***] = ${PORT}`)
         })
-        httpServer.on("error", error => console.log(`Error en servidor ${error}`))
+        httpServer.on("error", error => logger.error(`Error en servidor ${error}`))
     }
-
 } else {
-   const {httpServer} = require("./src/config/socket") 
-    
+   const {httpServer} = require("./src/config/socket")     
     httpServer.listen(PORT, ()=>{
-        console.log(`escuchando el puerto [***FORK***] =  ${PORT}`)
+        logger.info(`📢 Escuchando en el puerto [***FORK***] = ${PORT}`)
     })
-    httpServer.on("error", error => console.log(`Error en servidor ${error}`))
-
+    httpServer.on("error", error => logger.error(`Error en servidor ${error}`))
 }
