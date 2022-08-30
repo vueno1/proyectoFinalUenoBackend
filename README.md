@@ -41,7 +41,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
 
 * * *
 #### Implementacion Rutas: 
-* ##### Usuario: 
+* ##### 👤 Usuario: 
     Ingreso y registro de usuario desde __Vistas Handlebars__: 
     Por favor, dirigirse a __http://localhost:8080__ para probarlo.
     - __POST__: http://localhost:8080/ → "passport" autentica los datos, y si existen mail y contraseña, dan acceso al index.
@@ -53,7 +53,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
     __se utilizan los métodos de "service" de carrito, productos y user__
     - __GET__: http://localhost:8080/logout → se destruye la sesión y se vuelve a la vista login.hbs
 
-* ##### Productos: 
+* ##### 🍒 Productos: 
     Muestro, ingreso, modifico y elimino con __"Postman"__. 
     Rutas: 
     - __GET__: http://localhost:8080/api/productos
@@ -65,7 +65,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
     Vista:
     - __VISTA INDEX.HBS__: renderizo mis productos.
 
-* ##### Carrito: 
+* ##### 🛒 Carrito: 
     Creo, ingreso y elimino carrito desde las __Vistas handlebars__.
     Por favor, ingrese sesión __http://localhost:8080__ 
     - __BOTON COMPRAR__: se crea carrito nuevo y se ingesa producto (ruta POST /api/carrito/{{this._id}})
@@ -73,7 +73,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
     - __BOTON ELIMINAR__: elimina producto por unidad (ruta DELETE /api/carrito/deleteProducto/{{this._id}})
     - __BOTON LOGOUT__: cierra sesión y se elimina carrito (ruta GET /logout)
 
-* ##### Mensajes: 
+* ##### ✉️ Mensajes: 
     Los mensajes se crean y se postean en la __Vista handlebars__. 
     - __POST__: http://localhost:8080/mensajes → posteamos los mensajes ingresados en el input de "chat.hbs".
     - __GET__: http://localhost:8080/mostrarMensajes → mostramos los mensajes y los renderizamos en "index.hbs" donde se encuentra el partial "chat.respuestas.hbs".
