@@ -9,6 +9,9 @@ const {getTodosMensajes, postMensaje} = require("../services/mensajes/mensaje.se
 
 io.on("connection", async function(socket) {
     logger.info("***HELLO!👋👋👋 NUEVO USUARIO!***")
+
+    socket.emit("todosMensajes", await getTodosMensajes())
+
     socket.on("mensajeIngreso", async function (data){
         await postMensaje(data)
         io.sockets.emit("todosMensajes", await getTodosMensajes())

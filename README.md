@@ -76,9 +76,10 @@ npm start
 ```
 
 #### Autora: 
+```
 Ueno Valeria Soledad 
-[Email](ueno.vale@gmail.com)
-[LinkedIn](https://www.linkedin.com/in/valeria-ueno-996a61210/)
-
-
+Email: ueno.vale@gmail.com
+LinkedIn: https://www.linkedin.com/in/valeria-ueno-996a61210/
+```
+Muchas gracias por su visita! 😊
 
