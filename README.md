@@ -6,8 +6,10 @@
 
 Comercio Onlines es una app que funciona como un e-commerce. 
 En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avisar al proveedor de la compra. 
+* * *
 
-[![Watch the video](src/public//index.png)](https://youtu.be/vt5fpE0bzSY)
+(toque la imagen para ver el video)
+[![Watch the video](src/public//index.png)](https://youtu.be/rEBTVI7fXnE)
 * * *
 #### Descripcion de la App: 
 * Iniciamos sesión, o nos registramos al abrir el navegador. 
