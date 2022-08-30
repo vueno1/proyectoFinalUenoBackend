@@ -36,13 +36,14 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
 * Email: Nodemailer
 * Mensajes texto: Twilio 
 * Sesion: Express-Session 
-* Cookies: Cookie-parser
+* Cookies: Cookie-parser (duracion 1hora)
 * Loggs: Log4js
 
 * * *
 #### Implementacion Rutas: 
 * ##### Usuario: 
     Ingreso y registro de usuario desde __Vistas Handlebars__: 
+    Por favor, dirigirse a __http://localhost:8080__ para probarlo.
     - __POST__: http://localhost:8080/ → "passport" autentica los datos, y si existen mail y contraseña, dan acceso al index.
     - __GET__: http://localhost:8080/login_error → vista para error de loggeo. 
     - __POST__: http://localhost:8080/register → para el posteo de registro 
@@ -60,15 +61,17 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
     - __POST__: http://localhost:8080/api/productos
     - __PUT__: http://localhost:8080/api/productos/62fc0daf755a14dbac449005 (ejemplo de id)
     - __DELETE__: http://localhost:8080/api/productos/630afa5309348a586e53d5e3 (ejemplo de id)
+
+    Vista:
     - __VISTA INDEX.HBS__: renderizo mis productos.
 
 * ##### Carrito: 
-    Creo, ingreso y elimino carrito con los "botones" en las __Vistas handlebars__.
-    - Creo "carrito" al hacer click en 1 primer producto en vista "productos.hbs"
-    - __POST__: "api/carrito/{{this._id}} → se hace un post del producto seleccionado, y se envia al controlador para que lo ingrese al carrito creado. 
+    Creo, ingreso y elimino carrito desde las __Vistas handlebars__.
+    Por favor, ingrese sesión __http://localhost:8080__ 
+    - __BOTON COMPRAR__: se crea carrito nuevo y se ingesa producto (ruta POST /api/carrito/{{this._id}})
     - __GET__: http://localhost:8080/api/carrito → muestro todo mi carrito. (lo renderizo en vista index.hbs)
-    - __DELETE__: /api/carrito/deleteProducto/{{this._id}} → en el boton "eliminar" de la vista "carrito" podemos eliminar producto seleccionado x id, y eliminamos por unidad. 
-    - __GET__: "/logout" → se cierra sesion, y se elimina tambien carrito. 
+    - __BOTON ELIMINAR__: elimina producto por unidad (ruta DELETE /api/carrito/deleteProducto/{{this._id}})
+    - __BOTON LOGOUT__: cierra sesión y se elimina carrito (ruta GET /logout)
 
 * ##### Mensajes: 
     Los mensajes se crean y se postean en la __Vista handlebars__. 
@@ -94,4 +97,3 @@ LinkedIn: https://www.linkedin.com/in/valeria-ueno-996a61210/
 
 * * *
 Muchas gracias por su visita! 😊
-
