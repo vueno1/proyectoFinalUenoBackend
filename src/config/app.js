@@ -25,9 +25,9 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    // cookie: {
-    //     expires: 300000 //5min de inactividad
-    // }
+    cookie: {
+        expires: 3600000 //1 hora de inactividad
+    }
 }))
 
 app.use(passport.initialize())
