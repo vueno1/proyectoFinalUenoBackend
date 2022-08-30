@@ -34,7 +34,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
 * Autenticacion: Passport __no use JWT (avisado al profesor)__
 * Chat en tiempo real: Websocket con Socket.io (mensajes se guardan en MongoDB)
 * Email: Nodemailer
-* Mensajes texto: Twilio 
+* Mensajes texto: Twilio (recuerde activar whatsapp enviando un mensaje a twillio "Join ride-guide")
 * Sesion: Express-Session 
 * Cookies: Cookie-parser (duracion 1hora)
 * Loggs: Log4js
