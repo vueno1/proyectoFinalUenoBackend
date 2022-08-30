@@ -2,6 +2,7 @@
 ## Clase Backend 2022 - Comision 20645
 
 ### Comercio Online - :corn: Venta de Frutas y Verduras.:watermelon:
+- - -
 
 Comercio Onlines es una app que funciona como un e-commerce. 
 En ella podemos iniciar sesion, ver listado de productos, seleccionarlos y avisar al proveedor de la compra. 
@@ -18,17 +19,17 @@ En ella podemos iniciar sesion, ver listado de productos, seleccionarlos y avisa
 
 #### Tecnologias utilizadas: 
 * Node.js con framework Express
-* Base de datos: Mongodb con ORM Mongoose & Connect-Mongo
+* Base de datos: Mongodb con ORM Mongoose & Connect-Mongo + Mongo-ATLAS
 * Vista: Express-handlebars
 * autenticacion: Passport __no use JWT (avisado al profesor)__
-* Chat: Websocket con Socket.io
+* Chat en tiempo real: Websocket con Socket.io (mensajes se guardan en MongoDB)
 * Email: Nodemailer
 * Mensajes texto: Twilio 
 * Sesion: Express-Session 
 * Cookies: Cookie-parser
 * Loggs: Log4js
 
-##### Implementacion Rutas: 
+#### Implementacion Rutas: 
 * ##### Usuario: 
     Ingreso y registro de usuario desde __Vistas Handlebars__: 
     - __POST__: http://localhost:8080/ → "passport" autentica los datos, y si existen mail y contraseña, dan acceso al index.
@@ -67,17 +68,17 @@ En ella podemos iniciar sesion, ver listado de productos, seleccionarlos y avisa
     - __GET__: http://localhost:8080/mostrarMensajes → mostramos los mensajes y los renderizamos en "index.hbs" donde se encuentra el partial "chat.respuestas.hbs".
     - __GET__:http://localhost:8080/mensajes/:email → aqui podemos ver los mensajes por email. __esta ruta no la implemente, solo la puedo usar en postman__
 
-### Clonar y usar: 
+#### Clonar y usar: 
 ```
-git clone 
+git clone https://github.com/vueno1/proyectoFinalUenoBackend.git
 npm install 
 npm start
 ```
 
 #### Autora: 
-:grinning: Ueno Valeria Soledad 
-📧 uenovale@gmail.com
-💻 LinkedIn: https://www.linkedin.com/in/valeria-ueno-996a61210/
+Ueno Valeria Soledad 
+[Email](ueno.vale@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/valeria-ueno-996a61210/)
 
 
 
