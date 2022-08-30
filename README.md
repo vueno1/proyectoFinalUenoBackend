@@ -7,6 +7,7 @@
 Comercio Onlines es una app que funciona como un e-commerce. 
 En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avisar al proveedor de la compra. 
 
+* * *
 #### Descripcion de la App: 
 * Iniciamos sesión, o nos registramos al abrir el navegador. 
 * Al registrarnos, enviamos la información al proveedor con los detalles del usuario nuevo. 
@@ -24,8 +25,8 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
     - se envía un SMS al cliente avisando que la compra esta en proceso.
 * Al hacer logout, finalizamos la sesión y el carrito se elimina también.
 
-#### Tecnologias utilizadas: 
 * * *
+#### Tecnologias utilizadas: 
 * Node.js con framework Express
 * Base de datos: Mongodb con ORM Mongoose & Connect-Mongo
 * Base de dato en la nube: Mongo-ATLAS
@@ -38,6 +39,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
 * Cookies: Cookie-parser
 * Loggs: Log4js
 
+* * *
 #### Implementacion Rutas: 
 * ##### Usuario: 
     Ingreso y registro de usuario desde __Vistas Handlebars__: 
@@ -74,6 +76,7 @@ En ella podemos iniciar sesión, ver listado de productos, seleccionarlos y avis
     - __GET__: http://localhost:8080/mostrarMensajes → mostramos los mensajes y los renderizamos en "index.hbs" donde se encuentra el partial "chat.respuestas.hbs".
     - __GET__:http://localhost:8080/mensajes/:email → aqui podemos ver los mensajes por email. __esta ruta no la implemente, solo la puedo usar en postman__
 
+* * *
 #### Clonar y usar: 
 ```
 git clone https://github.com/vueno1/proyectoFinalUenoBackend.git
@@ -81,11 +84,14 @@ npm install
 npm start
 ```
 
+* * *
 #### Autora: 
 ```
 Ueno Valeria Soledad 
 Email: ueno.vale@gmail.com
 LinkedIn: https://www.linkedin.com/in/valeria-ueno-996a61210/
 ```
+
+* * *
 Muchas gracias por su visita! 😊
 
